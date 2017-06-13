@@ -56,15 +56,15 @@ Try {
 	##* VARIABLE DECLARATION
 	##*===============================================
 	## Variables: Application
-	[string]$appVendor = ''
-	[string]$appName = ''
-	[string]$appVersion = ''
+	[string]$appVendor = 'Intel'
+	[string]$appName = 'Quartus Prime Lite Edition'
+	[string]$appVersion = '17.0.0.595'
 	[string]$appArch = ''
 	[string]$appLang = 'EN'
 	[string]$appRevision = '01'
 	[string]$appScriptVersion = '1.0.0'
 	[string]$appScriptDate = '02/12/2017'
-	[string]$appScriptAuthor = '<author name>'
+	[string]$appScriptAuthor = 'Truong Nguyen'
 	##*===============================================
 	## Variables: Install Titles (Only set here to override defaults set by the toolkit)
 	[string]$installName = ''
@@ -112,7 +112,7 @@ Try {
 		[string]$installPhase = 'Pre-Installation'
 		
 		## Show Welcome Message, close Internet Explorer if required, allow up to 3 deferrals, verify there is enough disk space to complete the install, and persist the prompt
-        Show-InstallationWelcome -CloseApps 'iexplore' -AllowDefer -DeferTimes 3 -CheckDiskSpace -PersistPrompt
+        Show-InstallationWelcome -CloseApps 'quartus' -CheckDiskSpace -PersistPrompt
 		
 		## Show Progress Message (with the default message)
 		Show-InstallationProgress
@@ -132,7 +132,10 @@ Try {
 		}
 		
 		## <Perform Installation tasks here>
-		
+        # Install Quartus Prime Lite
+		Execute-Process -Path "$dirFiles\QuartusLiteSetup-17.0.0.595-windows.exe" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
+        # Install ModelSim
+        Execute-Process -Path "$dirFiles\ModelSimSetup-17.0.0.595-windows.exe" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
 		
 		##*===============================================
 		##* POST-INSTALLATION
@@ -152,7 +155,7 @@ Try {
 		[string]$installPhase = 'Pre-Uninstallation'
 		
 		## Show Welcome Message, close Internet Explorer with a 60 second countdown before automatically closing
-		Show-InstallationWelcome -CloseApps 'iexplore' -CloseAppsCountdown 60
+		Show-InstallationWelcome -CloseApps 'quartus' -CloseAppsCountdown 60
 		
 		## Show Progress Message (with the default message)
 		Show-InstallationProgress
