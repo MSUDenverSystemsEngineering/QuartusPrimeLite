@@ -59,11 +59,11 @@ Try {
 	[string]$appVendor = 'Intel'
 	[string]$appName = 'Quartus Prime Lite Edition'
 	[string]$appVersion = '17.0.0.595'
-	[string]$appArch = ''
+	[string]$appArch = 'x64'
 	[string]$appLang = 'EN'
 	[string]$appRevision = '01'
 	[string]$appScriptVersion = '1.0.0'
-	[string]$appScriptDate = '02/12/2017'
+	[string]$appScriptDate = '06/13/2017'
 	[string]$appScriptAuthor = 'Truong Nguyen'
 	##*===============================================
 	## Variables: Install Titles (Only set here to override defaults set by the toolkit)
@@ -112,7 +112,7 @@ Try {
 		[string]$installPhase = 'Pre-Installation'
 		
 		## Show Welcome Message, close Internet Explorer if required, allow up to 3 deferrals, verify there is enough disk space to complete the install, and persist the prompt
-        Show-InstallationWelcome -CloseApps 'quartus' -CheckDiskSpace -PersistPrompt
+        Show-InstallationWelcome -CloseApps 'quartus, quartus_pgmw, quartus_sh, quartus_dsew, modelsim, esclipse-nios2' -CheckDiskSpace -PersistPrompt
 		
 		## Show Progress Message (with the default message)
 		Show-InstallationProgress
@@ -132,10 +132,9 @@ Try {
 		}
 		
 		## <Perform Installation tasks here>
-        # Install Quartus Prime Lite
-		Execute-Process -Path "$dirFiles\QuartusLiteSetup-17.0.0.595-windows.exe" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
-        # Install ModelSim
-        Execute-Process -Path "$dirFiles\ModelSimSetup-17.0.0.595-windows.exe" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
+     	Execute-Process -Path "$dirFiles\QuartusLiteSetup-17.0.0.595-windows.exe" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
+        Execute-Process -Path "$dirSupportFiles\ModelSimSetup-17.0.0.595-windows.exe" -Parameters '--mode unattended --unattendedmodeui none --installdir "C:/intelFPGA_lite/17.0" --modelsim_edition modelsim_ase --product_copy_name "none" --startmenugroup_name "Intel FPGA 17.0.0.595 Lite Edition"  --launch_from_quartus 1' -WindowStyle 'Hidden' -PassThru
+      
 		
 		##*===============================================
 		##* POST-INSTALLATION
@@ -155,7 +154,7 @@ Try {
 		[string]$installPhase = 'Pre-Uninstallation'
 		
 		## Show Welcome Message, close Internet Explorer with a 60 second countdown before automatically closing
-		Show-InstallationWelcome -CloseApps 'quartus' -CloseAppsCountdown 60
+		Show-InstallationWelcome -CloseApps 'quartus, quartus_pgmw, quartus_sh, quartus_dsew, modelsim, esclipse-nios2' -CloseAppsCountdown 60
 		
 		## Show Progress Message (with the default message)
 		Show-InstallationProgress
@@ -174,8 +173,10 @@ Try {
 			Execute-MSI @ExecuteDefaultMSISplat
 		}
 		
-		# <Perform Uninstallation tasks here>
-		
+		# <Perform Uninstallation tasks here>		
+        Execute-Process -Path "C:\intelFPGA_lite\17.0\uninstall\modelsim_ase-17.0.0.595-windows-uninstall.exe" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
+        Execute-Process -Path "C:\intelFPGA_lite\17.0\uninstall\quartus_lite-17.0.0.595-windows-uninstall.exe" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
+       
 		
 		##*===============================================
 		##* POST-UNINSTALLATION
@@ -183,7 +184,7 @@ Try {
 		[string]$installPhase = 'Post-Uninstallation'
 		
 		## <Perform Post-Uninstallation tasks here>
-		
+		Remove-Folder -Path "C:\intelFPGA_lite" -ContinueOnError
 		
 	}
 	
