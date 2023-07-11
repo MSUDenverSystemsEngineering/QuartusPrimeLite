@@ -176,9 +176,9 @@ Try {
 
 		## <Perform Installation tasks here>
 
+            Execute-Process -Path "$dirFiles\QuartusLiteSetup-22.1std.1.917-windows.exe" -Parameters '--mode unattended --unattendedmodeui none --installdir C:\Quartus\22.1.1\ --disable-components quartus_help,questa_fse --accept_eula 1' -WindowStyle 'Hidden' -PassThru
 			Execute-Process -Path "$dirFiles\QuartusHelpSetup-22.1std.1.917-windows.exe" -Parameters '--mode unattended --unattendedmodeui none  --installdir C:\Quartus\22.1.1\ --accept_eula 1' -WindowStyle 'Hidden' -PassThru
 			Execute-Process -Path "$dirFiles\QuestaSetup-22.1std.1.917-windows.exe" -Parameters '--mode unattended --unattendedmodeui none --installdir C:\Quartus\22.1.1\ --accept_eula 1' -WindowStyle 'Hidden' -PassThru
-			Execute-Process -Path "$dirFiles\QuartusLiteSetup-22.1std.1.917-windows.exe" -Parameters '--mode unattended --unattendedmodeui none --installdir C:\Quartus\22.1.1\ --disable-components quartus_help,questa_fse --accept_eula 1' -WindowStyle 'Hidden' -PassThru
         ##*===============================================
         ##* POST-INSTALLATION
         ##*===============================================
@@ -189,6 +189,11 @@ Try {
 		## Add environment variable to point Questa to vmwas32 for a license (the license is free; you need to get a new one every year at https://licensing.intel.com/psg/s/?language=en)
 
 		[System.Environment]::SetEnvironmentVariable('MGLS_LICENSE_FILE', '27007@vmwas32', 'machine')
+
+        ## Install the drivers
+        Import-Certificate -FilePath "$dirSupportFiles\usbblstr.cer" -CertStoreLocation Cert:\LocalMachine\TrustedPublisher
+        Import-Certificate -FilePath "$dirSupportFiles\usbblasterii.cer" -CertStoreLocation Cert:\LocalMachine\TrustedPublisher
+        Get-ChildItem "C:\Quartus\22.1.1\quartus\drivers" -Recurse -Filter "*.inf" | ForEach-Object { PNPUtil.exe /add-driver $_.FullName /install }
 
 		## Display a message at the end of the install
 		If (-not $useDefaultMsi) {
@@ -296,8 +301,8 @@ Catch {
 # SIG # Begin signature block
 # MIImVAYJKoZIhvcNAQcCoIImRTCCJkECAQExDzANBglghkgBZQMEAgEFADB5Bgor
 # BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
-# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCD1/7GcRKQiYuAY
-# 9busSp+j1HyX7CbWIxrkdrWg9vDPUKCCH8AwggVvMIIEV6ADAgECAhBI/JO0YFWU
+# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCBIzrR845KV5eks
+# IeVUYz0Z70vNN3HmdTI3QHHHU+g9AqCCH8AwggVvMIIEV6ADAgECAhBI/JO0YFWU
 # jTanyYqJ1pQWMA0GCSqGSIb3DQEBDAUAMHsxCzAJBgNVBAYTAkdCMRswGQYDVQQI
 # DBJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAOBgNVBAcMB1NhbGZvcmQxGjAYBgNVBAoM
 # EUNvbW9kbyBDQSBMaW1pdGVkMSEwHwYDVQQDDBhBQUEgQ2VydGlmaWNhdGUgU2Vy
@@ -471,32 +476,32 @@ Catch {
 # MSswKQYDVQQDEyJTZWN0aWdvIFB1YmxpYyBDb2RlIFNpZ25pbmcgQ0EgUjM2AhEA
 # pU3fcPvc8UxUgrjysXLKMTANBglghkgBZQMEAgEFAKCBhDAYBgorBgEEAYI3AgEM
 # MQowCKACgAChAoAAMBkGCSqGSIb3DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQB
-# gjcCAQsxDjAMBgorBgEEAYI3AgEVMC8GCSqGSIb3DQEJBDEiBCDi2xACBon1uQ5o
-# om6uMmXC244n4paKfxfsoJN7+T3kKTANBgkqhkiG9w0BAQEFAASCAYCF7HOgYgu8
-# DZtbuxd+H/x6sgz36gJ2trJVi6WzfEhpk6ZNnyCnxy9e7UJxUMtEGwFOQEXSVtbk
-# 3yE4MZ1wrFXbfpSv+q2c0idlfe1plWWaXlk8qwCy9GObaiJm1MZgTD5Xhm/t8G+D
-# XeBQ6MXKTAK2M2WF14FG2T9K9PArEGF5PC7pMaqFHwUdDw+YQxdZS4YC7ShHwPgK
-# cBBMSAqThG8HU1D2IFS/PJUI6ZhtUVLzA5PeCb5E/OFmRs+W7Ki4uw56g/tfw+V0
-# DX/HWb+OicNklE65ZofSh8JD8VKc3FQLd6lXrKieWS5xmweb18jr82AmjT/MRDoo
-# sPWK3zSGjN8FqiVeKoh3Ve3+xIuBkPUGf2xhavo5/p1CU0QwSV371NZJhbpk5Y7D
-# nMH3JXwXOunCjQRFxNvdCMQcb1V0ccVGe1g9fqk+q5AUSgAHA3p5WWMjsYOAouyq
-# QaOBGuywowc+uJMwrZgWq2URI7lR93b4ELazw6RFGKFdtbi2yQ324QOhggNLMIID
+# gjcCAQsxDjAMBgorBgEEAYI3AgEVMC8GCSqGSIb3DQEJBDEiBCC5MBI7CfmocqrE
+# ewbBXjgIJqqOGSTOh8aIPRctj06GBDANBgkqhkiG9w0BAQEFAASCAYAscHkVmXtE
+# 448d0WM0qdMbkFlehGGwKVCH5ulZnpxtVowwhmrIW6tPdSUNmLa2qaz9O0yyNtTX
+# kDiQW0s3Tf20ui7jQgHil6yCngSi8JswGDGYSDE5yssSwEy79I8qbCwWVdhH8kPu
+# 7tOe0NzUDE1fz4j40uauT84/jFQBO4yj11AydnyhWT90oyjY8fxk2Tl755yFHWoO
+# PJa67P7KewQITbjBe6PAlhz2lLD3zkhsxpzr060hwwd74yAl0cYDmnbVxkd3Cr3M
+# eBQpS1lXRcTcQuLp02CLG0w3BcokY3Oroa2uP7qLh2gkyM4VtHxIJ8zEhwWn/abc
+# 8YeqM3CiIz4POnf9PcKvIOLW6CScMwT8Jc46jcsPznGAg+OjSHrnWNZwkdsHJYId
+# IotdM/vX4pTSMGigCPtU0GGRrGTVUfckoCnBdaUrOTVM7gBR1ZrIELrht/imkE9K
+# cAatB0gVzbSVAZSi/kiAVEQSgnDBG7drS69JWjeETV69UEQoR7z1V0yhggNLMIID
 # RwYJKoZIhvcNAQkGMYIDODCCAzQCAQEwgZEwfTELMAkGA1UEBhMCR0IxGzAZBgNV
 # BAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBxMHU2FsZm9yZDEYMBYGA1UE
 # ChMPU2VjdGlnbyBMaW1pdGVkMSUwIwYDVQQDExxTZWN0aWdvIFJTQSBUaW1lIFN0
 # YW1waW5nIENBAhA5TCXhfKBtJ6hl4jvZHSLUMA0GCWCGSAFlAwQCAgUAoHkwGAYJ
-# KoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjMwNTE4MTg0
-# MDQ1WjA/BgkqhkiG9w0BCQQxMgQw+zGyq9ASAxaL4yRMRMxYwlYcBFCMi6qCfgoo
-# PRG5Vw3/jz4VN7NxgcNEShxZnZrRMA0GCSqGSIb3DQEBAQUABIICAD+iqO7wOJp3
-# cXEGe6kv9FuE8wZKwEm0lAq2evBITyuEdB6IK2wpIzVhO34wkltiQ/UxxoawG+K7
-# sG6LDpXmcAlQhItNMRcsDmJHjY4QCoKYD9sI2jZP7w9++E2pJN0DZ9aez+Ln2NIr
-# +cECdPmAEcNgYUTfgifiM3Mt9EvXUkzwn3Hg6ubL0yHahJlxLIJf3CNv7adQ6yHF
-# igm81k3ssrY0qPxPH9PH4jNeZ653Lb1OmjZ97jv8YayeHgqXzNQV9CypAuZ2ufAu
-# qqpOfsi9a0Qn0PAFlFSb+KBhF+lJ3soZHRxc8ghcy04zp7wP0YdBwjWvuFhqTUzb
-# zAnyl8h4TNdO5xmJy4hChZFgL/tKYAeKe0lwP1sxKfIXPJUFafWXzv3HG5U1DZAH
-# ZfERTRHOsfARWY1ZGAasR58JH6lCmTy2Rd1ikysJbDjakWlIk09h7qt18nM7Cyi4
-# HggOJYf2i4huNZ4DEqLkgCXEQrh3046JxtyxOEpcWnNtee1iPWOlpvPJE220RgKo
-# 3yu6IW7j9zPPcboBoIUaFJtEO4HBM+Y21Qqg0oZafrLUl7b2p+EujZO8507rKcgq
-# mD7D2sIXLOdiT5JHBmbDdRQQxYZ99lmbF3UZiuPDEu4dm3u6CENMAOha358geQlP
-# pYatQ6AaEjppAeWxmrTXPmrfTMO54Ru4
+# KoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjMwNzExMTQy
+# NTU3WjA/BgkqhkiG9w0BCQQxMgQw3MhUhaJ7L45ZxMGHepdqjX7pS2KPG4gW1gRq
+# 8rJL8DLiv7LcA5pE37kO1flYGDyQMA0GCSqGSIb3DQEBAQUABIICAH84pFK5ck4N
+# MtdvBj0EoARIs+5Po+/GgJRAxlUkzh+YtrKrHhEZ1CtM4bN6sEGDrU6UOT2lgQEn
+# bGqzBiPafczo/CcMdbibIKrku3lrUHTivbyOUWVpeIzZYjSTLidyZMZqTv0MDDsZ
+# LKDXS/3xH+bGN5b/yE7Kv7z690DyfqTR4PTJ642M7b2+csz35nS9ls+3rFt6HPL8
+# 1Mo9sv6AJVgZ8FVfU3koOGQXvtAxwNZo+hGvpGOijNQP5+VCl5R+yhPYbmgI5fKd
+# g88chCfl2y89dJhg1BegVR8b9Ke4xkuqomZjo9Q75FzIydFlTloyP8M/ZH6FobUS
+# nrw8nUKAg6Cb2YaVbn6yCfBjaBy7bzwskOoP0qN6+yXPsSxdF9WqMZ5ysjxo8z1u
+# ylCiloYC3Vt64ogJC81McYy/2VJ0X7VZpL5taDyC95CO5pEq11a7fBKyo3Vs1rTM
+# vZewSkKWvtuXlLsk94P+vwrPogwmgUKzm7DPPzFaLTMIZyq9M8Nhpnu+6OURzRki
+# 4xCkdq2pVWnpAOP2WeIh0Wgl23VqjT6uHp9+hDgWOicvXNiikOKqZ+Jqop0aW+1G
+# NwJrbDyYoIBGpvhn9H5Utx85seRs8Bp6P49+LuXoRWGS1nBFkZ0hc3GQw4zKsdaW
+# igZSZR2APfUrbrAmAFLi5F6UuJrlGuHZ
 # SIG # End signature block
