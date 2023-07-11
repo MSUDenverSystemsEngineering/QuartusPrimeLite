@@ -225,9 +225,9 @@ Try {
 		# <Perform Uninstallation tasks here>
 				# Help and Questa should be taken care of by the main uninstaller. Leaving here in case needed.
 
-				# Execute-Process -Path "C:\Quartus\22.1.1\uninstall\questa_fse-22.1std.1.917-windows-uninstall" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
-        Execute-Process -Path "C:\Quartus\22.1.1\uninstall\quartus_lite-22.1std.1.917-windows-uninstall" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
-				# Execute-Process -Path "C:\Quartus\22.1.1\uninstall\quartus_help-22.1std.1.917-windows-uninstall" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
+				# Execute-Process -Path "C:\Quartus\22.1.1\uninstall\questa_fse-22.1std.1.917-windows-uninstall.exe" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
+        Execute-Process -Path "C:\Quartus\22.1.1\uninstall\quartus_lite-22.1std.1.917-windows-uninstall.exe" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
+				# Execute-Process -Path "C:\Quartus\22.1.1\uninstall\quartus_help-22.1std.1.917-windows-uninstall.exe" -Parameters '--mode unattended --unattendedmodeui none' -WindowStyle 'Hidden' -PassThru
 
 
         ##*===============================================
@@ -296,8 +296,8 @@ Catch {
 # SIG # Begin signature block
 # MIImVAYJKoZIhvcNAQcCoIImRTCCJkECAQExDzANBglghkgBZQMEAgEFADB5Bgor
 # BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
-# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCAZpcSJVwA+BBdv
-# EvEr3vr/imCh3ErRrtjBOxaStsRVX6CCH8AwggVvMIIEV6ADAgECAhBI/JO0YFWU
+# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCD1/7GcRKQiYuAY
+# 9busSp+j1HyX7CbWIxrkdrWg9vDPUKCCH8AwggVvMIIEV6ADAgECAhBI/JO0YFWU
 # jTanyYqJ1pQWMA0GCSqGSIb3DQEBDAUAMHsxCzAJBgNVBAYTAkdCMRswGQYDVQQI
 # DBJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAOBgNVBAcMB1NhbGZvcmQxGjAYBgNVBAoM
 # EUNvbW9kbyBDQSBMaW1pdGVkMSEwHwYDVQQDDBhBQUEgQ2VydGlmaWNhdGUgU2Vy
@@ -471,32 +471,32 @@ Catch {
 # MSswKQYDVQQDEyJTZWN0aWdvIFB1YmxpYyBDb2RlIFNpZ25pbmcgQ0EgUjM2AhEA
 # pU3fcPvc8UxUgrjysXLKMTANBglghkgBZQMEAgEFAKCBhDAYBgorBgEEAYI3AgEM
 # MQowCKACgAChAoAAMBkGCSqGSIb3DQEJAzEMBgorBgEEAYI3AgEEMBwGCisGAQQB
-# gjcCAQsxDjAMBgorBgEEAYI3AgEVMC8GCSqGSIb3DQEJBDEiBCCwtGHMlWQp8jRJ
-# +81Mhv1zqh/jFyKrTCY7x9JU/0wGPjANBgkqhkiG9w0BAQEFAASCAYA9xcCSKswN
-# VYrnh0XdD1SJohXVAUxckf5F1N3KTGnEby1ln1GoKoxE7HzxdK4P+OkwywSpLlD3
-# mbQ7LA1YD6L2D1IMMRFA1q+tp+tlFghHolS1rRBxM8l9f8mwKd+nBrerGNtOAyE0
-# LQV5ceVvgFSyDUy9IqHD9Nk9WiSXaXXiSPi5YZ2Gb17Jw32noYCPIBzajdC0Bwhg
-# 7W1z5mg/ZWVHAe1F1v466LfDYQF7D8KnH4h5gpejmPdryQP+aoCaEE9azCR3D0pw
-# YMeJHVQ091bP7dJn//FAO9dq6piyxpmGwi88xm80WpPIqstdo32MzeWCnVkzgJE6
-# A9PL2sXuoj9pNHLqBWHk9+nehxMflUTZAj2cw5XlTeD2mh844qAJLP9h2bg+FrjX
-# Dr/klvfh+ORxDyWu+mxdcBGxXcsLqSgPrWXqzlVsx3HiGb3oziDdMs9OAPQeGojA
-# GANeSdXYX3QyU3kFhcHwKl/0xWBUSmoKoU/61pbzXSDMhIJ70aS2zGChggNLMIID
+# gjcCAQsxDjAMBgorBgEEAYI3AgEVMC8GCSqGSIb3DQEJBDEiBCDi2xACBon1uQ5o
+# om6uMmXC244n4paKfxfsoJN7+T3kKTANBgkqhkiG9w0BAQEFAASCAYCF7HOgYgu8
+# DZtbuxd+H/x6sgz36gJ2trJVi6WzfEhpk6ZNnyCnxy9e7UJxUMtEGwFOQEXSVtbk
+# 3yE4MZ1wrFXbfpSv+q2c0idlfe1plWWaXlk8qwCy9GObaiJm1MZgTD5Xhm/t8G+D
+# XeBQ6MXKTAK2M2WF14FG2T9K9PArEGF5PC7pMaqFHwUdDw+YQxdZS4YC7ShHwPgK
+# cBBMSAqThG8HU1D2IFS/PJUI6ZhtUVLzA5PeCb5E/OFmRs+W7Ki4uw56g/tfw+V0
+# DX/HWb+OicNklE65ZofSh8JD8VKc3FQLd6lXrKieWS5xmweb18jr82AmjT/MRDoo
+# sPWK3zSGjN8FqiVeKoh3Ve3+xIuBkPUGf2xhavo5/p1CU0QwSV371NZJhbpk5Y7D
+# nMH3JXwXOunCjQRFxNvdCMQcb1V0ccVGe1g9fqk+q5AUSgAHA3p5WWMjsYOAouyq
+# QaOBGuywowc+uJMwrZgWq2URI7lR93b4ELazw6RFGKFdtbi2yQ324QOhggNLMIID
 # RwYJKoZIhvcNAQkGMYIDODCCAzQCAQEwgZEwfTELMAkGA1UEBhMCR0IxGzAZBgNV
 # BAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBxMHU2FsZm9yZDEYMBYGA1UE
 # ChMPU2VjdGlnbyBMaW1pdGVkMSUwIwYDVQQDExxTZWN0aWdvIFJTQSBUaW1lIFN0
 # YW1waW5nIENBAhA5TCXhfKBtJ6hl4jvZHSLUMA0GCWCGSAFlAwQCAgUAoHkwGAYJ
-# KoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjMwNTE3MjEz
-# MzIwWjA/BgkqhkiG9w0BCQQxMgQwtlptT+qcUgQyzxI7zLZWFvVFdUCFPaIKcWNu
-# hjH7BkawaanrG+1zwdrcHgKJU7fUMA0GCSqGSIb3DQEBAQUABIICADg/In2ki3j+
-# 6rPfPnkZmBUP7s5uaq/hSOrE8nTosCljZT8CKFPwBQQ+JlaQ/YUZ8UkQwocpUvjb
-# mZTpCR9AR2BqZhiQzgiIOu6gyjH4RF2pNXFUuJIqNeYGqTEZf/+CZoYuOtspKt2W
-# otHLczPjglBzd+tQoai7+QBr4rmpvi5enCXxrs8WHvBpKyLBj+u2bVeE75aboV81
-# sntir3fa/vdv/NucusFxi2mIktEMbAInQtkOIfQT+/2RLCjPMCWwytXdPTR6wzE9
-# ncehZ58rdoMlk2oolo0cTpUSLt9Q1YCQRnxfISUj62Ve1EbyP2Uiu0rlt0kAn7i8
-# bYZ9KcFycVQzcErhtRUs1ooHWn0AnCUvklh2Po3mdBHei5TfNCwpwJzJMNPLcveH
-# uiV19iz25xPI9CwcfPQ4mcwHYhD4pDgi51PNKt+0j28qwDgBuhU72pgZBVt4Dy9x
-# jBenrEGpglr4c13TtPTnZQFWjppZMQ4f541ZxepdQPJ2D4qLT7JTK0zIWFEceMRK
-# KNRF+zkEs8bFqQbvKeYjH6ENTiU2nk8XTI7c1FHizrkvgBQudiBjW43nAC+PiZqB
-# IgQx5p8CzR1h3gnEu4aRdrskgSJ3xyGV4VanwptnPh37M62owcnG2IiA/6NxZxhT
-# XP8Ve8YzP0MR51x/ZGJQFMI+dw0zEOTT
+# KoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMjMwNTE4MTg0
+# MDQ1WjA/BgkqhkiG9w0BCQQxMgQw+zGyq9ASAxaL4yRMRMxYwlYcBFCMi6qCfgoo
+# PRG5Vw3/jz4VN7NxgcNEShxZnZrRMA0GCSqGSIb3DQEBAQUABIICAD+iqO7wOJp3
+# cXEGe6kv9FuE8wZKwEm0lAq2evBITyuEdB6IK2wpIzVhO34wkltiQ/UxxoawG+K7
+# sG6LDpXmcAlQhItNMRcsDmJHjY4QCoKYD9sI2jZP7w9++E2pJN0DZ9aez+Ln2NIr
+# +cECdPmAEcNgYUTfgifiM3Mt9EvXUkzwn3Hg6ubL0yHahJlxLIJf3CNv7adQ6yHF
+# igm81k3ssrY0qPxPH9PH4jNeZ653Lb1OmjZ97jv8YayeHgqXzNQV9CypAuZ2ufAu
+# qqpOfsi9a0Qn0PAFlFSb+KBhF+lJ3soZHRxc8ghcy04zp7wP0YdBwjWvuFhqTUzb
+# zAnyl8h4TNdO5xmJy4hChZFgL/tKYAeKe0lwP1sxKfIXPJUFafWXzv3HG5U1DZAH
+# ZfERTRHOsfARWY1ZGAasR58JH6lCmTy2Rd1ikysJbDjakWlIk09h7qt18nM7Cyi4
+# HggOJYf2i4huNZ4DEqLkgCXEQrh3046JxtyxOEpcWnNtee1iPWOlpvPJE220RgKo
+# 3yu6IW7j9zPPcboBoIUaFJtEO4HBM+Y21Qqg0oZafrLUl7b2p+EujZO8507rKcgq
+# mD7D2sIXLOdiT5JHBmbDdRQQxYZ99lmbF3UZiuPDEu4dm3u6CENMAOha358geQlP
+# pYatQ6AaEjppAeWxmrTXPmrfTMO54Ru4
 # SIG # End signature block
